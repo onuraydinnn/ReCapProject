@@ -21,33 +21,33 @@ namespace ConsoleUI
         {
             ColorManager colorManager = new ColorManager(new EFColorDal());
 
-            foreach (var c in colorManager.GetAll())
+            foreach (var c in colorManager.GetAll().Data)
             {
                 Console.WriteLine(c.ColorId + " " + c.ColorName);
             }
-            Console.WriteLine(colorManager.GetById(3).ColorName);
+            Console.WriteLine(colorManager.GetById(3).Data.ColorName);
         }
 
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EFBrandDal());
 
-            foreach (var c in brandManager.GetAll())
+            foreach (var c in brandManager.GetAll().Data)
             {
                 Console.WriteLine(c.BrandId + " " + c.BrandName);
             }
-            Console.WriteLine(brandManager.GetById(3).BrandName);
+            Console.WriteLine(brandManager.GetById(3).Data.BrandName);
         }
-
+         
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EFCarDal());
 
-            foreach (var c in carManager.GetCarDetails())
+            foreach (var c in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine(c.CarName + " : " +c.BrandName+ " : " +c.ColorName +" : " +c.DailyPrice);
             }
-            //Console.WriteLine(carManager.GetById(3).CarName);
+            Console.WriteLine(carManager.GetById(3).Data.CarName + " " + carManager.GetById(3).Message);
         }
     }
 }
