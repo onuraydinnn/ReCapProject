@@ -51,11 +51,13 @@ namespace ConsoleUI
         private static void UserTest()
         {
             IUserService userManager = new UserManager(new EFUserDal());
-            //userManager.Add(new User { UserId = 1, FirstName = "Onur", LastName = "Aydın", Password = "onuraydin", Email = "onuraydin@hotmail.com" });
+            //userManager.Add(new User { FirstName = "Ahmet", LastName = "Aydın", Password = "ahmetaydin"});
             foreach (var item in userManager.GetAll().Data)
             {
                 Console.WriteLine(item.UserId + " : " + item.FirstName + " " + item.LastName);
             }
+            //userManager.Delete(new User { UserId = 4 });
+            
         }
 
         private static void ColorTest()
@@ -88,7 +90,7 @@ namespace ConsoleUI
             {
                 Console.WriteLine(c.CarName + " : " +c.BrandName+ " : " +c.ColorName +" : " +c.DailyPrice);
             }
-            Console.WriteLine(carManager.GetById(3).Data.CarName + " " + carManager.GetById(3).Message);
+            //Console.WriteLine(carManager.GetById(3).Data.CarName + " " + carManager.GetById(3).Message);
         }
     }
 }
