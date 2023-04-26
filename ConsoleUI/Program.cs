@@ -85,6 +85,7 @@ namespace ConsoleUI
         private static void CarTest()
         {
             ICarService carManager = new CarManager(new EFCarDal());
+            carManager.Add(new Car { BrandId = 3, CarName = "sedan", ColorId = 4, DailyPrice = 250000, ModelYear = "2014" });
 
             foreach (var c in carManager.GetCarDetails().Data)
             {
