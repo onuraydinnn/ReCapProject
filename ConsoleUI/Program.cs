@@ -12,14 +12,20 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //CarImageTest();
             //CarTest();
             //BrandTest();
             //ColorTest();
             //UserTest();
             //RentalTest();
             //CustomerTest();
-            
-            
+
+
+        }
+
+        private static void CarImageTest()
+        {
+           
         }
 
         private static void CustomerTest()
@@ -54,7 +60,7 @@ namespace ConsoleUI
             //userManager.Add(new User { FirstName = "Ahmet", LastName = "Aydın", Password = "ahmetaydin"});
             foreach (var item in userManager.GetAll().Data)
             {
-                Console.WriteLine(item.UserId + " : " + item.FirstName + " " + item.LastName);
+                Console.WriteLine(item.Id + " : " + item.FirstName + " " + item.LastName);
             }
             //userManager.Delete(new User { UserId = 4 });
             
