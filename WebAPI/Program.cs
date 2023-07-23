@@ -10,6 +10,9 @@ using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Utilities.Security.Encryption;
+using Core.DependencyResolvers;
+using Core.Extensions;
+using Autofac.Core;
 
 namespace WebAPI
 {
@@ -41,14 +44,19 @@ namespace WebAPI
             //builder.Services.AddSingleton<ICustomerService, CustomerManager>();
             //builder.Services.AddSingleton<ICustomerDal, EFCustomerDal>();
 
+
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureContainer<ContainerBuilder>(builder =>
                 {
                     builder.RegisterModule(new AutofacBusinessModule());
                 });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200"));
+            });
 
-            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -65,7 +73,11 @@ namespace WebAPI
                                     IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                                 };
                             });
-            ServiceTool.Create(builder.Services);
+
+            builder.Services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
+            });
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -81,12 +93,15 @@ namespace WebAPI
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
 
             app.MapControllers();
 

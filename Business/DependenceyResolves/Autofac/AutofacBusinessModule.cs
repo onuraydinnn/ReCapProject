@@ -41,12 +41,15 @@ namespace Business.DependenceyResolves.Autofac
             builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
             builder.RegisterType<EFCarImageDal>().As<ICarImageDal>().SingleInstance();
 
+            builder.RegisterType<PaymentManager>().As<IPaymentService>().SingleInstance();
+            builder.RegisterType<EFPaymentDal>().As<IPaymentDal>().SingleInstance();
+
             builder.RegisterType<FileHelperManager>().As<IFileHelper>().SingleInstance();
 
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
-            //builder.RegisterType<IHttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
+            
 
 
 

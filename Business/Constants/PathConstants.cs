@@ -8,6 +8,6 @@ namespace Business.Constants
 {
     public static class PathConstants
     {
-        public static string CarImagesPath = "Z:\\VisualStudioProjects\\ReCapProject\\WebAPI\\Images\\CarImage\\";
+        public static string CarImagesPath = "Z:\\VisualStudioProjects\\ReCapProject\\WebAPI\\wwwroot\\CarImages\\";
     }
 }

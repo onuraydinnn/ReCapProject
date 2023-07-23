@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\CarImage\" />
+    <None Include="wwwroot\CarImages\d517a6a7-d53a-4cd5-9a57-651ac7cf4a92.jpg" />
+    <None Include="wwwroot\CarImages\DefaultImage.jpg" />
   </ItemGroup>
 
 </Project>
