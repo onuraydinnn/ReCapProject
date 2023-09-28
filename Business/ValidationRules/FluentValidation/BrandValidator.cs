@@ -8,8 +8,17 @@ namespace Business.ValidationRules.FluentValidation
         public BrandValidator()
         {
             RuleFor(b=>b.BrandName).NotEmpty();
-            RuleFor(b => b.BrandName).MinimumLength(2);
-
+            RuleFor(b => b.BrandName).MinimumLength(2).WithMessage("Minimum 2 harf olmalı");
+            RuleFor(b => b.BrandName).Must(FirstLetterUpperCase).WithMessage("Marka büyük harf ile başlamalı");
+        }
+        private bool FirstLetterUpperCase(string brandName)
+        {
+            char name = brandName[0];
+            if (char.IsUpper(name))
+            {
+                return true;
+            }
+            return false;
         }
 
     }

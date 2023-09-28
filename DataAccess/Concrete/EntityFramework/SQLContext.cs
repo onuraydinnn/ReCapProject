@@ -11,6 +11,10 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class SQLContext : DbContext
     {
+        public SQLContext()
+        {
+            this.Database.SetCommandTimeout(999);
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=SQLCarProject;Trusted_Connection=true");
